@@ -3,11 +3,12 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
-
+#include <ctype.h>
 
 #define MAX_NAME 256
 #define TABLE_SIZE 10
 #define DELETED_NODE (person*)(0xFFFFFFFFFFFFFFFFUL)
+
 
 typedef struct {
     char name[MAX_NAME];
@@ -38,7 +39,6 @@ bool init_hash_table() {
 
 void print_table() {
 
-    printf("Start\n");
     for (int i = 0; i < TABLE_SIZE; i++) {
         if (hash_table[i] == NULL) {
             printf("\t%i\t---\n", i);
@@ -48,7 +48,8 @@ void print_table() {
             printf("\t%i\t%s\n", i, hash_table[i]->name);
         }
     }
-    printf("End\n");
+    printf("Press Enter to continue\n");
+    getchar();
 }
 
 bool hash_table_insert(person *p) {
@@ -113,12 +114,21 @@ void menu() {
         case 1:
             system("clear");
             print_table();
-            printf("Press any key to continue \n");
-            scanf("%c", &ch);
+            getchar();
             menu();
             break;
         case 2:
-
+            printf("Type name: ");
+            char* temp_name[256], temp_name_capital[256];
+            scanf("%s", &temp_name);
+            strcpy(temp_name_capital, temp_name);
+            temp_name_capital[0] = toupper(temp_name_capital[0]);
+ 
+            printf("Type age: ");
+            int temp_age;
+            scanf("%i", temp_age);
+            person temp_name = {.name = temp_name_capital, .age = temp_age};
+            getchar();
             break;
         case 3:
 
