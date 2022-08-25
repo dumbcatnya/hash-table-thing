@@ -126,7 +126,7 @@ void menu() {
             scanf("%i", &temp_age);
             person temp_person = {.name = &temp_name, .age = &temp_age};
             hash_table_insert(&temp_person);
-            printf("Press any key to continue \n");
+            printf("Press Enter to continue \n");
             getchar();
             getchar();
             menu();
